@@ -11,7 +11,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:9090/`. The app w
 You can deploy this app on docker with below ccommand.
 ```
 docker build -t mohdtabish999/contact-ui .
-docker ps
+docker images
 docker run -p 9090:9090 c6bf3886b602/<image-id>
 ```
 ## Code scaffolding
