@@ -4,8 +4,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:9090/`. The app will automatically reload if you change any of the source files.
 
+## Deploy on docker
+
+You can deploy this app on docker with below ccommand.
+```
+docker build -t mohdtabish999/contact-ui .
+docker ps
+docker run -p 9090:9090 c6bf3886b602/<image-id>
+```
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
