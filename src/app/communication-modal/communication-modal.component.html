@@ -1,0 +1,50 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Communication Detail</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true" class="button-cross">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="communicationModalForm" (ngSubmit)="submitForm()">
+  <div class="modal-body">
+    
+    <div class="container">
+      <div class="form-group">
+        <label for="type">Communication Type (mail, mobile, post etc.): </label>
+        <input type="text" class="form-control" formControlName="type" />
+      </div>
+      <div class="form-group">
+        <label for="value">Value: </label>
+        <input type="text" class="form-control" formControlName="value" />
+      </div>
+      <div class="form-group">
+        <label for="preferred">High Priority: </label>
+        <!-- <input type="text" class="form-control" formControlName="preferred" /> -->
+        <!-- Default inline 1-->
+        <div class="custom-control custom-radio label-modal">
+          <input id="preferredtrue" type="radio" class="custom-control-input" formControlName="preferred" value="true"
+            name="preferred" >
+          <label class="custom-control-label" for="preferredtrue">True</label>
+        </div>
+
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio label-modal">
+          <input id="preferredfalse" type="radio" class="custom-control-input" value="false" formControlName="preferred"
+            name="preferred" >
+          <label class="custom-control-label" for="preferredfalse">False</label>
+        </div>
+        
+      </div>
+      <!-- <div class="form-group">
+        <label for="password">Password: </label>
+        <input type="password" class="form-control">
+      </div> -->
+    </div>
+  </div>
+</form>
+
+<div class="modal-footer">
+  <button class="btn btn-success" [disabled]="!communicationModalForm.valid" (click)="submitForm()">
+    Submit
+  </button>
+</div>

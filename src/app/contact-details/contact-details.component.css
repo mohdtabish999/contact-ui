@@ -1,0 +1,90 @@
+table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+
+  /*  th, td {
+    overflow: hidden;
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } */ 
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: #777;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #b3a5e9;
+  }
+
+  .example-expanded-row:hover {
+    background: #777;
+  }
+  .example-expanded-row:active{
+    background: #b3a5e9;
+  }
+  .example-element-sub-header {
+    background: rgb(143, 143, 143);
+    font-weight: bold;
+    font-size: 12px;
+    line-height: normal;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+
+  .example-element-diagram2 {
+    min-width: 80px;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+
+  .example-element-symbol2 {
+    font-weight: bold;
+    font-size: 15px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+    /* background: rgb(12, 146, 101); */
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+  
+.example-button-row {
+   margin: 3px 0;
+   margin-right: 4px;
+  /* background: rgb(12, 146, 101); */
+}

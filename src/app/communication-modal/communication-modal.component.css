@@ -1,0 +1,15 @@
+.button-cross{
+    color: red;
+}
+.label-modal {
+   /* display: flex;
+     flex-direction: row; 
+    justify-content: flex-end;
+    text-align: left;
+    width: 400px;
+    line-height: 26px;
+    margin-bottom: 10px; */
+    width : auto;
+    position : relative;
+}
+  

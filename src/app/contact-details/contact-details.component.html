@@ -1,0 +1,126 @@
+
+<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+
+   <!-- Weight Column -->
+   <ng-container matColumnDef="id1">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.identification.id}} </td>
+  </ng-container>
+  
+  <!-- Weight Column -->
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef> Last Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.identification.lastName}} </td>
+  </ng-container>
+
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="dob">
+    <th mat-header-cell *matHeaderCellDef> DOB </th>
+    <td mat-cell *matCellDef="let element"> {{element.identification.dob}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="gender">
+    <th mat-header-cell *matHeaderCellDef> Gender </th>
+    <td mat-cell *matCellDef="let element"> {{element.identification.gender}} </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.identification.title}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef> First Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.identification.firstName}} </td>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">    
+      <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <table mat-table [dataSource]="element.communication" multiTemplateDataRows class="mat-elevation-z8" >
+            <!-- Communication Column -->
+          <ng-container matColumnDef="communication-channel">
+            <th mat-header-cell *matHeaderCellDef  [attr.colspan]="displayedColumns.length"  class="example-element-sub-header"> Communication
+              <button mat-raised-button  color="primary" (click)="addCommunicationRow(element.id)">Add</button>  
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="{{ccolumn}}" *ngFor="let ccolumn of comColumnsToDisplay">
+            <th mat-header-cell *matHeaderCellDef  > {{ccolumn}} </th>
+            <td mat-cell *matCellDef="let com" > {{com[ccolumn]}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="deleteHeader">
+            <th mat-header-cell *matHeaderCellDef >Actions</th>
+          </ng-container>
+          <ng-container matColumnDef="actionButton">
+            <!-- <th mat-header-cell *matHeaderCellDef >Actions</th>-->
+            <td mat-cell *matCellDef="let row; let i = dataIndex" > 
+              <button mat-raised-button color="primary">Update</button> 
+              <button mat-raised-button  color="primary" (click)="deleteCommunicationRow(element.id,row['id'],i)">Delete</button>
+            </td>
+          </ng-container>
+          <!--<ng-container matColumnDef="deleteButton" >
+             <td mat-cell *matCellDef="let row"> <button mat-raised-button color="primary">Delete</button></td>
+          </ng-container> -->
+            
+          <tr mat-header-row *matHeaderRowDef="['communication-channel']"></tr>
+          <tr mat-header-row  *matHeaderRowDef="comColumnsToDisplay.concat(['deleteHeader'])"></tr>
+          <!--<tr mat-header-row *matHeaderRowDef="['action']"></tr> -->
+          <tr mat-row  *matRowDef="let row; columns: comColumnsToDisplay.concat(['actionButton']);" class="example-detail-row"></tr>
+        
+        </table>
+
+        <!-- <div *ngFor="let com of element.communication">{{ com[ccolumn] }}</div> -->
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expandedDetailAddress">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">    
+      <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <table mat-table [dataSource]="element.address" multiTemplateDataRows class="mat-elevation-z8">
+          <ng-container matColumnDef="{{acolumn}}" *ngFor="let acolumn of addressColumnsToDisplay">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{acolumn}} </th>
+            <td mat-cell *matCellDef="let address"> {{address[acolumn]}} </td>
+          </ng-container>
+          <!-- Adress Column  container-->
+          <ng-container matColumnDef="address-channel">
+            <th mat-header-cell *matHeaderCellDef [attr.colspan]="addressColumnsToDisplay.length+1" class="example-element-sub-header"> Adress </th>
+          </ng-container>
+
+          <ng-container matColumnDef="addheader">
+            <th mat-header-cell *matHeaderCellDef >Actions</th>
+          </ng-container>
+          <ng-container matColumnDef="addsubrow">
+            <!-- <th mat-header-cell *matHeaderCellDef >Actions</th>-->
+            <td mat-cell *matCellDef="let row" > 
+              <button mat-raised-button color="primary">Update</button> 
+              <button mat-raised-button color="primary">Delete</button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="['address-channel']"></tr>
+          <tr mat-header-row *matHeaderRowDef="addressColumnsToDisplay.concat(['addheader']);"></tr>
+          <tr mat-row *matRowDef="let row; columns: addressColumnsToDisplay.concat(['addsubrow']);" class="example-detail-row"></tr>
+        </table>
+
+        <!-- <div *ngFor="let com of element.communication">{{ com[ccolumn] }}</div> -->
+      </div>
+    </td>
+  </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"
+      [class.example-expanded-row]="expandedElement === row"
+      (click)="expandedElement = expandedElement === row ? null : row">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetailAddress']" class="example-detail-row"></tr>
+ 
+</table>
